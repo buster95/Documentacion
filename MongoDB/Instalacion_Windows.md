@@ -26,7 +26,7 @@ C:\mongo\logs
     ```
 
 ## Instalar Servicio
->El siguiente creará un servicio con inicio automatico en Windows con el nombre de **MongoDB**
+>El siguiente código creará un servicio con inicio automatico en Windows con el nombre de **MongoDB**
 ```bash
 mongod --dbpath=C:\mongo\data --logpath=C:\mongo\logs\log --install
 ```
