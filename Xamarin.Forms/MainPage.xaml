@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:paginas="clr-namespace:appRRHH.Views;assembly=appRRHH"
+                  xmlns:controls="clr-namespace:appRRHH.Componentes;assembly=appRRHH"
+                  xmlns:xcomp="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+                  x:Class="appRRHH.MainPage"
+				  MasterBehavior="Popover">
+
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu"
+                     Icon="ic_menu.png"
+                     BackgroundColor="{StaticResource MenuColor}">
+            <ScrollView Orientation="Vertical">
+                <StackLayout Orientation="Vertical"
+                             VerticalOptions="FillAndExpand"
+                             Padding="0"
+                             Spacing="0">
+                    <Grid>
+                        <Image Source="background.png" Aspect="Fill" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" />
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+
+                        <xcomp:CircleImage Source="{Binding GetFoto}"
+                                    x:Name="imgPerfil"
+                                    FillColor="White"
+                                    BorderColor="#002C69"
+                                    BorderThickness="2"
+                                    HorizontalOptions="Start"
+                                    Margin="20,30,0,0"
+                                    Grid.Column="0"
+                                    Grid.Row="0">
+                            <xcomp:CircleImage.WidthRequest>
+                                <OnPlatform x:TypeArguments="x:Double"
+                                    iOS="55"
+                                    Android="80"
+                                    WinPhone="75" />
+                            </xcomp:CircleImage.WidthRequest>
+                            <xcomp:CircleImage.HeightRequest>
+                                <OnPlatform x:TypeArguments="x:Double"
+                                    iOS="55"
+                                    Android="80"
+                                    WinPhone="75" />
+                            </xcomp:CircleImage.HeightRequest>
+                        </xcomp:CircleImage>
+
+                        <Label x:Name="lblNombre"
+                            Text="{Binding NombreCompleto}"
+                            TextColor="White"
+                            Margin="20,0,0,0"
+                            Grid.Column="0"
+                            Grid.Row="1" />
+
+                        <Label x:Name="lblEmail"
+                            Text="{Binding email}"
+                            TextColor="White"
+                            Margin="20,20,0,15"
+                            Grid.Column="0"
+                            Grid.Row="1" />
+                    </Grid>
+
+                    <controls:MenuList x:Name="menulista"
+                                       VerticalOptions="FillAndExpand"
+                                       RowHeight="60"
+                                       SeparatorVisibility="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ImageCell ImageSource="{Binding Icono}"
+                                           Text="{Binding Nombre}"
+                                           TextColor="{StaticResource TextMenuColor}"
+                                           Command="{Binding Comando}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </controls:MenuList>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <NavigationPage x:Name="NavegaPaginas">
+            <x:Arguments>
+                <paginas:MarcadasPage />
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+
+</MasterDetailPage>
